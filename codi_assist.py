@@ -6,6 +6,7 @@ import wikipedia
 import geocoder
 from pygeocoder import Geocoder
 import datetime
+import smtplib
 import alsaaudio
 import os,subprocess
 m = alsaaudio.Mixer()
@@ -110,7 +111,20 @@ while True:
         print(ny.content[0:400])
         engine.say(ny.content[0:400])
         engine.runAndWait()
-    
+        
+    elif "mail" in input1:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
+        server.starttls()
+        engine.say("Whom do you want to send mail")
+        to=r.recognize_google(audio)
+        engine.say("What's the message")
+        content=r.recognize_google(audio)
+        mymail=input("enter your mail")
+        password=input("enter your password")
+        server.login(mymail, password)
+        server.sendmail(mymail, to, content)
+        server.close()   
 
     elif input1=="open YouTube":
         print("opening youtube...")
