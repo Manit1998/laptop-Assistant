@@ -1,0 +1,7 @@
+pyttsx3
+PyDictionary
+webbrowser
+wikipedia
+geocoder
+from pygeocoder
+alsaaudio
